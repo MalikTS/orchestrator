@@ -21,6 +21,7 @@
 go build -o workload.exe .\cmd\workload
 go build -o agent.exe .\cmd\agent
 go build -o controller.exe .\cmd\controller
+```
 
 2. Запуск (в отдельных терминалах)
 Терминал 1 — контроллер:
