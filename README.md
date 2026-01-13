@@ -17,22 +17,38 @@ Controller — центральный оркестратор (service discovery,
 ✅ Состояние кластера в /status
 
 🚀 Быстрый запуск (локально)
+
 1. Сборка
+
    go build -o workload.exe .\cmd\workload
-  go build -o agent.exe .\cmd\agent
-  go build -o controller.exe .\cmd\controller
+   go build -o agent.exe .\cmd\agent
+   go build -o controller.exe .\cmd\controller
+
+   
 2. Запуск (в отдельных терминалах)
+   
 Терминал 1 — контроллер:
+
 .\controller.exe
+
 Терминал 2 — агент:
+
 .\agent.exe -port=9001 -node-ip=127.0.0.1 -workload-bin=.\workload.exe
+
 Также можно запустить несколько агентов на разных портах (-port=9002, -port=9003...) для эмуляции кластера.
+
 3. Управление
+   
 Задать количество реплик:
+
 curl -X POST http://localhost:8080/deploy -H "Content-Type: application/json" -d "{\"replicas\":3}"
+
 Проверить состояние кластера:
+
 curl http://localhost:8080/status
+
 Пример ответа:
+
 {
   "desired_replicas": 3,
   "actual_replicas": 3,
@@ -43,12 +59,14 @@ curl http://localhost:8080/status
   "nodes": {"127.0.0.1": {"ip":"127.0.0.1","last_ping":"...","is_alive":true}}
 }
 
+
 📁 Структура проекта
 /cmd
   /workload     # Сервис полезной нагрузки
   /agent        # Агент на ноде
   /controller   # Центральный контроллер
 /internal/types # Общие типы
+
 
 
 💡 Примечания
