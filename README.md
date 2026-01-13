@@ -22,25 +22,24 @@ go build -o workload.exe .\cmd\workload
 go build -o agent.exe .\cmd\agent
 go build -o controller.exe .\cmd\controller
 
-2. Запуск (в отдельных терминалах)
+## 2. Запуск (в отдельных терминалах)
 Терминал 1 — контроллер:
-
-cmd
+```cmd
 .\controller.exe
-Терминал 2 — агент:
 
-cmd
+Терминал 2 — агент:
+```cmd
 .\agent.exe -port=9001 -node-ip=127.0.0.1 -workload-bin=.\workload.exe
 Можно запустить несколько агентов на разных портах (-port=9002, -port=9003...) для эмуляции кластера.
 
-3. Управление
+## 3. Управление
 Задать количество реплик:
 
-cmd
+```cmd
 curl -X POST http://localhost:8080/deploy -H "Content-Type: application/json" -d "{\"replicas\":3}"
 Проверить состояние кластера:
 
-cmd
+```cmd
 curl http://localhost:8080/status
 Пример ответа:
 
