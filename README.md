@@ -26,12 +26,10 @@ go build -o controller.exe .\cmd\controller
 Терминал 1 — контроллер:
 
 cmd
-1
 .\controller.exe
 Терминал 2 — агент:
 
 cmd
-1
 .\agent.exe -port=9001 -node-ip=127.0.0.1 -workload-bin=.\workload.exe
 Можно запустить несколько агентов на разных портах (-port=9002, -port=9003...) для эмуляции кластера.
 
@@ -39,12 +37,10 @@ cmd
 Задать количество реплик:
 
 cmd
-1
 curl -X POST http://localhost:8080/deploy -H "Content-Type: application/json" -d "{\"replicas\":3}"
 Проверить состояние кластера:
 
 cmd
-1
 curl http://localhost:8080/status
 Пример ответа:
 
